@@ -35,6 +35,13 @@ goog.require('Maze.soy');
 BlocklyGames.NAME = 'maze';
 
 /**
+ * General config
+ */
+
+ Maze.SHOW_HELP = false;
+ Maze.SHOW_FINAL_LEVEL_HELP_DIALOG = false;
+
+/**
  * Go to the next level.  Add skin parameter.
  * @suppress {duplicate}
  */
@@ -558,7 +565,8 @@ Maze.init = function() {
     Blockly.CONNECTING_SNAP_RADIUS = Blockly.SNAP_RADIUS;
   }
   if (BlocklyGames.LEVEL == 10) {
-    if (!BlocklyGames.loadFromLocalStorage(BlocklyGames.NAME,
+    if (Maze.SHOW_FINAL_LEVEL_DIALOG 
+        && !BlocklyGames.loadFromLocalStorage(BlocklyGames.NAME,
                                           BlocklyGames.LEVEL)) {
       // Level 10 gets an introductory modal dialog.
       // Skip the dialog if the user has already won.
@@ -602,6 +610,9 @@ Maze.init = function() {
  * @param {Blockly.Events.Abstract=} opt_event Custom data for event.
  */
 Maze.levelHelp = function(opt_event) {
+  if (!Maze.SHOW_HELP) {
+    return;
+  }
   if (opt_event && opt_event.type == Blockly.Events.UI) {
     // Just a change to highlighting or somesuch.
     return;
