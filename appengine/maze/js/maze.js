@@ -40,6 +40,7 @@ BlocklyGames.NAME = 'maze';
 
  Maze.SHOW_HELP = false;
  Maze.SHOW_FINAL_LEVEL_HELP_DIALOG = false;
+ Maze.MAP_WIDTH = 800;
 
 /**
  * Go to the next level.  Add skin parameter.
@@ -240,9 +241,9 @@ Maze.map = [
  */
 Maze.ROWS = Maze.map.length;
 Maze.COLS = Maze.map[0].length;
-Maze.SQUARE_SIZE = 50;
-Maze.PEGMAN_HEIGHT = 52;
-Maze.PEGMAN_WIDTH = 49;
+Maze.SQUARE_SIZE = 150;
+Maze.PEGMAN_HEIGHT = 104;
+Maze.PEGMAN_WIDTH = 98;
 
 Maze.MAZE_WIDTH = Maze.SQUARE_SIZE * Maze.COLS;
 Maze.MAZE_HEIGHT = Maze.SQUARE_SIZE * Maze.ROWS;
@@ -432,8 +433,8 @@ Maze.drawMap = function() {
   finishMarker.setAttribute('id', 'finish');
   finishMarker.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href',
       Maze.SKIN.marker);
-  finishMarker.setAttribute('height', 34);
-  finishMarker.setAttribute('width', 20);
+  finishMarker.setAttribute('height', 68);
+  finishMarker.setAttribute('width', 0);
   svg.appendChild(finishMarker);
 
   // Pegman's clipPath element, whose (x, y) is reset by Maze.displayPegman
@@ -505,8 +506,8 @@ Maze.init = function() {
   var onresize = function(e) {
     var top = visualization.offsetTop;
     blocklyDiv.style.top = Math.max(10, top - window.pageYOffset) + 'px';
-    blocklyDiv.style.left = rtl ? '10px' : '420px';
-    blocklyDiv.style.width = (window.innerWidth - 440) + 'px';
+    blocklyDiv.style.left = rtl ? '10px' : '820px';
+    blocklyDiv.style.width = (window.innerWidth - 840) + 'px';
   };
   window.addEventListener('scroll', function() {
     onresize(null);
